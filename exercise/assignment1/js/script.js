@@ -2,6 +2,9 @@
 
 window.onload = setup;
 
+// Global rotation
+let rotation = 0;
+
 function setup(){
   console.log("Testing, testing");
 
@@ -16,6 +19,12 @@ function setup(){
     // but in actuality, I'm setting the opacity of
     // the pixel to 0
     pixel.addEventListener('click', pixelRemove);
+
+    // pixelRotate
+    //
+    // When I press a specific key, the pixels rotates
+    // a specfic way like clockwise or counter-clockwise
+    document.addEventListener('keydown', pixelRotate);
 
     document.body.appendChild(pixel);
 
@@ -45,6 +54,33 @@ function pixelRemove(e) {
   pixel.style.opacity = '0';
 }
 
+
+// pixelRotate
+//
+// When I press the right arrow key, the pixels rotates clockwise and
+// as for the the left arrow key, the pixels rotates counter-clockwise
+function pixelRotate(e) {
+  let pixel = e.target;
+
+  // Right arrow key
+  if (e.keyCode === 39) {
+    rotation += 1;
+  }
+  // Left arrow key
+  else if (e.keyCode === 37) {
+    rotation -= 1;
+  }
+
+  // querySelectorAll()
+  //
+  // Using this function to able to control all the pixel in the
+  // screen as an array for loop
+  let allPixels = document.querySelectorAll('.pixel');
+  for(let i = 0; i < allPixels.length; i++){
+    allPixels[i].style.transform = `rotate(${rotation}deg)`;
+  }
+
+}
 
 function resetPixel(pixel){
   pixel.style.backgroundColor = 'black';

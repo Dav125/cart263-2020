@@ -3,4 +3,5 @@
   width: 30px;
   height: 30px;
   float: left;
+  transform: rotate(0deg);
 }
