@@ -1,7 +1,16 @@
 .pixel {
   background-color: black;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   float: left;
   transform: rotate(0deg);
+
+  line-height: 90%
+}
+
+body{
+font-family: Helvetica, sans-serif;
+font-size: 13px;
+text-align: center;
+
 }

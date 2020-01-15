@@ -34,6 +34,12 @@ function setup(){
     // to keep track of the key being pressed
     document.addEventListener('keydown', typedPixel);
 
+    // MouseOver event
+    //
+    // To show the current key that is being used at
+    // the center of the screen
+    document.addEventListener('mouseover', addText);
+
     document.body.appendChild(pixel);
 
   }
@@ -95,6 +101,19 @@ function pixelRotate(e) {
 // To keep track of the key being pressed
 function typedPixel(e){
   currentKey = e.keyCode;
+}
+
+// addText()
+//
+// To show the current key that is being used with
+// the mouseOver event
+function addText(e){
+  let pixel = e.target;
+
+  if (pixel.className === 'pixel'){
+    pixel.innerHTML = String.fromCharCode(currentKey);
+  }
+
 }
 
 function resetPixel(pixel){
