@@ -5,6 +5,9 @@ window.onload = setup;
 // Global rotation
 let rotation = 0;
 
+// Global variable for currentKey
+let currentKey = "";
+
 function setup(){
   console.log("Testing, testing");
 
@@ -25,6 +28,11 @@ function setup(){
     // When I press a specific key, the pixels rotates
     // a specfic way like clockwise or counter-clockwise
     document.addEventListener('keydown', pixelRotate);
+
+    // typedPixel
+    //
+    // to keep track of the key being pressed
+    document.addEventListener('keydown', typedPixel);
 
     document.body.appendChild(pixel);
 
@@ -76,10 +84,17 @@ function pixelRotate(e) {
   // Using this function to able to control all the pixel in the
   // screen as an array for loop
   let allPixels = document.querySelectorAll('.pixel');
+
   for(let i = 0; i < allPixels.length; i++){
     allPixels[i].style.transform = `rotate(${rotation}deg)`;
   }
+}
 
+// typedPixel()
+//
+// To keep track of the key being pressed
+function typedPixel(e){
+  currentKey = e.keyCode;
 }
 
 function resetPixel(pixel){
