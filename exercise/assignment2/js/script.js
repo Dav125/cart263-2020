@@ -40,7 +40,7 @@ function setup(){
 
 // spanClicked()
 //
-// When the span is clicked, we reveal the sentence   
+// When the span is clicked, we reveal the sentence
 function spanClicked() {
   $(this).removeClass('revealed');
   $(this).addClass('redacted');
@@ -56,6 +56,11 @@ function update(){
   $('span').each(updateSpan);
 }
 
+// updateSpan()
+//
+// With random chance it unblanks the current span by removing the
+// redacted class and adding the revealed class. Because this function is called
+// by each(), "this" refers to the current element that each has selected.
 function updateSpan(){
   console.log("Updating span!");
   let r = Math.random();
