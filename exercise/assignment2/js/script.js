@@ -21,6 +21,11 @@ const UPDATE_FREQUENCY = 500;
 // A place to store the jQuery selection of all the spans
 // in other words a variable for jQuery
 let $spans;
+let $secrets;
+
+// Variable for secrets found and revealed in total
+let secretsFound = 0;
+let secretsTotal;
 
 // To set-up the page to be ready when it loads
 $(document).ready(setup);
@@ -29,6 +34,13 @@ function setup(){
   console.log("Loaded!");
   // Save the selection of all the spans (Since we are going to click it multiple times anyway)
   $spans = $('span');
+
+  // To store the result of lengh result for secret
+  secretsTotal = $secrets.lengh;
+
+  // Putting the total number secrets in the top screen
+  $('#found').text(secretsTotal); 
+
   // Set up a click handler on the spans
   $('span').on('click',spanClicked);
   // setInterval()
