@@ -35,8 +35,6 @@ function setup(){
   // Save the selection of all the spans (Since we are going to click it multiple times anyway)
   $spans = $('span');
 
-  // To store the result of lengh result for secret
-  secretsTotal = $secrets.lengh;
 
   // Putting the total number secrets in the top screen
   $('#found').text(secretsTotal);
@@ -89,10 +87,11 @@ function updateSpan(){
 // findSecret
 //
 // Once a secret word is found by a mouse hover, the secret
-// word is turned into a class called 'found'
-function secretsFound() {
+// word is turned into a class called 'founded' and it increase the
+// counter
+function findSecret() {
   // Adding the founded class
-  $(this).addClass('found');
+  $(this).addClass('founded');
 
   // Once the word is hovered, the mouseover function
   // is off
@@ -102,5 +101,5 @@ function secretsFound() {
   secretsFound += 1;
 
   // Presenting the words found
-  $('#found').text(secretsFound); 
+  $('#found').text(secretsFound);
 }

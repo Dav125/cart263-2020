@@ -20,6 +20,11 @@ body {
   color: black;
 }
 
+.founded {
+  background-color: blue;
+  color: white;
+}
+
 #found {
-  color: blue; 
+  color: blue;
 }
