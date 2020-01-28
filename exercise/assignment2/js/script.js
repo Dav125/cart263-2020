@@ -30,7 +30,7 @@ let secretsTotal;
 // To set-up the page to be ready when it loads
 $(document).ready(setup);
 
-function setup(){
+function setup() {
   console.log("Loaded!");
   // Save the selection of all the spans (Since we are going to click it multiple times anyway)
   $spans = $('span');
@@ -40,7 +40,7 @@ function setup(){
   $('#found').text(secretsTotal);
 
   // Set up a click handler on the spans
-  $('span').on('click',spanClicked);
+  $('span').on('click', spanClicked);
 
   // Adding an event listener for to find secret words
   $('.secret').on('mouseover', findSecret);
@@ -50,7 +50,7 @@ function setup(){
   // Adding a time interval that links to the function update for each
   // 500 milisecond
   setInterval(update, UPDATE_FREQUENCY);
-  }
+}
 
 // spanClicked()
 //
@@ -65,7 +65,7 @@ function spanClicked() {
 // Update is called every 500 milliseconds and it updates all the spans on the page
 // using jQuery's each() function which calls the specified function on _each_ of the
 // elements in the selection
-function update(){
+function update() {
   console.log("Update");
   $('span').each(updateSpan);
 }
@@ -75,10 +75,10 @@ function update(){
 // With random chance it unblanks the current span by removing the
 // redacted class and adding the revealed class. Because this function is called
 // by each(), "this" refers to the current element that each has selected.
-function updateSpan(){
+function updateSpan() {
   console.log("Updating span!");
   let r = Math.random();
-  if(r < REVEAL_POSSIBILTY) {
+  if (r < REVEAL_POSSIBILTY) {
     $(this).removeClass('redacted');
     $(this).addClass('revealed');
   }
