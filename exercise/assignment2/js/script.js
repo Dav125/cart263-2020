@@ -39,10 +39,14 @@ function setup(){
   secretsTotal = $secrets.lengh;
 
   // Putting the total number secrets in the top screen
-  $('#found').text(secretsTotal); 
+  $('#found').text(secretsTotal);
 
   // Set up a click handler on the spans
   $('span').on('click',spanClicked);
+
+  // Adding an event listener for to find secret words
+  $('.secret').on('mouseover', findSecret);
+
   // setInterval()
   //
   // Adding a time interval that links to the function update for each
@@ -80,4 +84,23 @@ function updateSpan(){
     $(this).removeClass('redacted');
     $(this).addClass('revealed');
   }
+}
+
+// findSecret
+//
+// Once a secret word is found by a mouse hover, the secret
+// word is turned into a class called 'found'
+function secretsFound() {
+  // Adding the founded class
+  $(this).addClass('found');
+
+  // Once the word is hovered, the mouseover function
+  // is off
+  $(this).off('mouseover');
+
+  // Increase the number count of the secret founded
+  secretsFound += 1;
+
+  // Presenting the words found
+  $('#found').text(secretsFound); 
 }
