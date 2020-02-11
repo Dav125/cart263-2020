@@ -12,3 +12,13 @@ So the task is never ending which I have to create a project that
 reflects the story of Sisyphus.
 
 *********************************************************************/
+
+$(document).ready(setup);
+
+function setup(){
+  
+}
+
+function draw(){
+
+}

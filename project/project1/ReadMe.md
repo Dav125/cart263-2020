@@ -1,0 +1,1 @@
+What Im planning to do for this project is that I want to make a program that makes a simulator of the person plays a video game and we see a meter of how much the person is happy with his or her life. There will be meter tracking the stress rather the happiness of the player because I think th  
