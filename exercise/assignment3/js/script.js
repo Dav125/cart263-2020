@@ -152,6 +152,10 @@ let animals = [
     let answers = [];
     const NUM_OPTIONS = 5;
 
+    let speakGiveUp = {'I give up': giveup};
+    let speakRepeat = {'Say it again': repeat};
+    let speakGuess = {'I think it is *animals': guess};
+
 $(document).ready(setup);
 
 
@@ -159,6 +163,9 @@ function setup() {
 addButton("Lamb");
 addButton("Llama");
 
+annyang.addCommands(speakGiveUp);
+
+annyang.start();
 newRound();
 
 }
@@ -167,10 +174,14 @@ function addButton(label){
   let $button = $('<div></div>');
 
   $button.addClass('guess');
+  $button.addClass('new');
+  $button.addClass('correct')
   $button.text(label);
 
   $button.button();
   $button.on('click' ,handleGuess);
+
+
   $('body').append($button);
 
 }
@@ -190,11 +201,15 @@ function sayBackwards(text){
 
 function newRound(){
   answers = [];
+  $('.new').remove();
+
   for (let i =0; i< NUM_OPTIONS; i++) {
     let answer = animals[Math.floor(Math.random() * animals.length)];
     addButton(answer);
     answers.push(answer);
+
   }
+
 
   correctAnimal = answers[Math.floor(Math.random() * answers.length)];
   sayBackwards(correctAnimal)
@@ -209,4 +224,13 @@ function handleGuess(){
    $(this).effect('shake');
    sayBackwards(correctAnimal);
  }
+}
+
+function giveup(){
+
+  responsiveVoice.speak(correctAnimal,'UK English Male');
+
+  $('.correct').effect('highlight');
+  setTimeout(newRound, 2000);
+
 }
