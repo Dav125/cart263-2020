@@ -154,7 +154,7 @@ let animals = [
 
     let speakGiveUp = {'I give up': giveup};
     let speakRepeat = {'Say it again': repeat};
-    let speakGuess = {'I think it is *animals': guess};
+    let speakGuess = {'I think it is *animals': voiceGuess};
 
 $(document).ready(setup);
 
@@ -164,6 +164,8 @@ addButton("Lamb");
 addButton("Llama");
 
 annyang.addCommands(speakGiveUp);
+annyang.addCommands(speakRepeat);
+annyang.addCommands(speakGuess);
 
 annyang.start();
 newRound();
@@ -232,5 +234,22 @@ function giveup(){
 
   $('.correct').effect('highlight');
   setTimeout(newRound, 2000);
+}
 
+function repeat(){
+  sayBackwards(correctAnimal);
+}
+
+function voiceGuess(animalGuess){
+  if (animalGuess === correctAnimal){
+    $('.guess').remove();
+    setTimeout(newRound, 1000);
+
+  }
+
+  else {
+     $('.guess').effect('shake');
+     sayBackwards(correctAnimal);
+     
+  }
 }
