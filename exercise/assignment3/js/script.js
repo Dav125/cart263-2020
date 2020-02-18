@@ -150,6 +150,7 @@ let animals = [
     let correctAnimal;
 
     let answers = [];
+    let score = 0;
     const NUM_OPTIONS = 5;
 
     let speakGiveUp = {'I give up': giveup};
@@ -177,7 +178,8 @@ function addButton(label){
 
   $button.addClass('guess');
   $button.addClass('new');
-  $button.addClass('correct')
+  $button.addClass('correct');
+  $button.addClass('incorrect');
   $button.text(label);
 
   $button.button();
@@ -221,19 +223,26 @@ function handleGuess(){
   if ($(this).text() === correctAnimal) {
    $('.guess').remove();
    setTimeout(newRound,1000);
+   correct();
  }
  else {
    $(this).effect('shake');
+   incorrect();
    sayBackwards(correctAnimal);
  }
 }
 
 function giveup(){
-
   responsiveVoice.speak(correctAnimal,'UK English Male');
-
-  $('.correct').effect('highlight');
+  $('.guess').each(checkCorrect);
+  incorrect();
   setTimeout(newRound, 2000);
+}
+
+function checkCorrect(){
+  if ($(this).text() === correctAnimal) {
+    $(this).effect('highlight');
+  }
 }
 
 function repeat(){
@@ -242,6 +251,7 @@ function repeat(){
 
 function voiceGuess(animalGuess){
   if (animalGuess === correctAnimal){
+    correct();
     $('.guess').remove();
     setTimeout(newRound, 1000);
 
@@ -250,6 +260,16 @@ function voiceGuess(animalGuess){
   else {
      $('.guess').effect('shake');
      sayBackwards(correctAnimal);
-     
+
   }
+}
+
+function correct(){
+  score += 1;
+  $('#score').text(score);
+}
+
+function incorrect(){
+  score = 0;
+  $('#score').text(score);
 }
