@@ -97,6 +97,7 @@ backgroundKid = loadImage("assets/images/backgroundKid.jpg");
 
 function setup() {
 createCanvas(1280, 720);
+imageMode(CENTER, CENTER);
 
 sprite = new Sprite(width/2, 500, 600, 600 , 3.5, spriteImg, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW);
 
@@ -140,12 +141,13 @@ for (let i = 0; i < toyNumb; i++){
 }
 
 function startScreen(){
-  background(backgroundKid, 1280, 720);
-
+image(backgroundKid, width/2, height/2);
   push();
   textSize(80);
-  text("Dreamworld Climb", width / 2, height / 4);
   textAlign(CENTER, CENTER);
+  fill(255);
+  text("Dreamworld Climb", width / 2, height / 4);
+
   noStroke();
   pop();
 
@@ -155,7 +157,7 @@ function startScreen(){
 }
 
 function gameScreen(){
-  background(backgroundKid, 1280, 720);
+image(backgroundKid, width/2, height/2);
 
   sprite.handleInput();
   sprite.gravity();
@@ -168,6 +170,7 @@ function gameScreen(){
 
   // for loop
   for (let i = 0; i < bearFplus.length; i++) {
+    bearFplus[i].gravity();
     bearFplus[i].display();
     bearFplus[i].move();
     bearFplus[i].handleWrapping();
@@ -175,6 +178,7 @@ function gameScreen(){
   }
 
   for (let i = 0; i < ponyFplus.length; i++) {
+    ponyFplus[i].gravity();
     ponyFplus[i].display();
     ponyFplus[i].move();
     ponyFplus[i].handleWrapping();
@@ -182,6 +186,7 @@ function gameScreen(){
   }
 
   for (let i = 0; i < wheelFplus.length; i++) {
+    wheelFplus[i].gravity();
     wheelFplus[i].display();
     wheelFplus[i].move();
     wheelFplus[i].handleWrapping();
@@ -213,8 +218,8 @@ if (sprite.y > height) {
 // Description of draw()
 
 function draw() {
+clear();
 
-background(backgroundKid, 1280, 720);
 
   switch (state) {
     case "startGame":
@@ -243,6 +248,8 @@ background(backgroundKid, 1280, 720);
 
   if (mouseIsPressed) {
     state = "startGame";
+
+    sprite = new Sprite(width/2, 500, 600, 600 , 3.5, spriteImg, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW);
   }
   }
 
