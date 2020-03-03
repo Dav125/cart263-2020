@@ -17,7 +17,7 @@ let bearImg;
 
 let ponyImg;
 
-let wheel;
+let wheelImg;
 
 let backgroundKid;
 
@@ -29,21 +29,25 @@ let coolImg;
 
 let violentBg;
 
-let platform = [];
+let platformImg;
+
+let platformF = [];
 
 let toyFall = [];
 
-let bearF= [];
+let bearFplus= [];
 
-let ponyF = [];
+let ponyFplus = [];
 
-let wheelF = [];
+let wheelFplus = [];
 
 let gunfightF = [];
 
 let violenceF = [];
 
 let coolF = [];
+
+let startingPlatPlus;
 
 let toyNumb = 1;
 
@@ -78,7 +82,7 @@ gunfightImg = loadImage("assets/images/gunfight.jpg");
 
 coolImg  = loadImage("assets/images/cool.jpg");
 
-platformImg = loadImage("assets/images/platformImg.png")
+platformImg = loadImage("assets/images/box.png");
 
 violentBg = loadImage("assets/images/violentBG.jpg");
 
@@ -124,9 +128,9 @@ for (let i = 0; i < toyNumb; i++){
   let wtoyX = random(0, width);
   let wtoyY = random(0, height);
 
-  bearF = new Toys(btoyX, btoyY, 500, 500, bearImg);
-  ponyF = new Toys(ptoyX, ptoyY, 500, 500, ponyImg);
-  wheelF = new Toys(wtoyX, wtoyY, 500, 500, wheelImg);
+  let bearF = new Toys(btoyX, btoyY, 500, 500, bearImg);
+  let ponyF = new Toys(ptoyX, ptoyY, 500, 500, ponyImg);
+  let wheelF = new Toys(wtoyX, wtoyY, 500, 500, wheelImg);
 
 
   bearFplus.push(bearF);
@@ -136,6 +140,8 @@ for (let i = 0; i < toyNumb; i++){
 }
 
 function startScreen(){
+  background(backgroundKid, 1280, 720);
+
   push();
   textSize(80);
   text("Dreamworld Climb", width / 2, height / 4);
@@ -156,26 +162,30 @@ function gameScreen(){
   sprite.move();
   sprite.display();
 
+  sprite.pull = 1;
+
+  sprite.grounded = false;
+
   // for loop
-  for (i = 0; i < bearF.length; i++) {
-    bearF[i].display();
-    bearF[i].move();
-    bearF[i].handleWrapping();
-    bearF[i].handleCollision(sprite);
+  for (let i = 0; i < bearFplus.length; i++) {
+    bearFplus[i].display();
+    bearFplus[i].move();
+    bearFplus[i].handleWrapping();
+    bearFplus[i].handleCollision(sprite);
   }
 
-  for (i = 0; i < ponyF.length; i++) {
-    ponyF[i].display();
-    ponyF[i].move();
-    ponyF[i].handleWrapping();
-    ponyF[i].handleCollision(sprite);
+  for (let i = 0; i < ponyFplus.length; i++) {
+    ponyFplus[i].display();
+    ponyFplus[i].move();
+    ponyFplus[i].handleWrapping();
+    ponyFplus[i].handleCollision(sprite);
   }
 
-  for (i = 0; i < wheelF.length; i++) {
-    wheelF[i].display();
-    wheelF[i].move();
-    wheelF[i].handleWrapping();
-    wheelF[i].handleCollision(sprite);
+  for (let i = 0; i < wheelFplus.length; i++) {
+    wheelFplus[i].display();
+    wheelFplus[i].move();
+    wheelFplus[i].handleWrapping();
+    wheelFplus[i].handleCollision(sprite);
   }
 
   // for loop for starting platform
@@ -204,7 +214,7 @@ if (sprite.y > height) {
 
 function draw() {
 
-  background(backgroundKid, 1280, 720);
+background(backgroundKid, 1280, 720);
 
   switch (state) {
     case "startGame":

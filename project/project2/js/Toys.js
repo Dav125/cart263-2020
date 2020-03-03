@@ -1,5 +1,5 @@
 class Toys{
-  constructor(x, y, width, height, toysimg) {
+  constructor(x, y, width, height, toysImg) {
     // The x and y Postion
     this.x = x;
     this.y = y;
@@ -16,7 +16,7 @@ class Toys{
     this.height = height * this.scale;
 
     // Variable to display the image
-    this.toysimg = toysImg;
+    this.toysImg = toysImg;
   }
 
   move() {

@@ -61,7 +61,7 @@ class Sprite {
       this.vy = -17.5;
 
   }
-
+}
 // move()
 //
 // To allow the climber to move in the screen
