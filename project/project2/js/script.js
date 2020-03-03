@@ -61,6 +61,8 @@ let startingPlat = [];
 
 let state = "startGame"
 
+let toyScore = 0;
+
 
 // preload()
 //
@@ -158,6 +160,13 @@ image(backgroundKid, width/2, height/2);
 
 function gameScreen(){
 image(backgroundKid, width/2, height/2);
+
+push();
+textSize(40);
+textAlign(CENTER, CENTER);
+fill(255);
+text(toyScore, width - 20, height/10);
+pop();
 
   sprite.handleInput();
   sprite.gravity();

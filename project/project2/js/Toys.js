@@ -41,6 +41,7 @@ class Toys{
     if (d < this.width / 2 + sprite.width / 2) {
       this.x = random(width/3, width/3*2);
       this.y = 0;
+      toyScore ++;
     }
   }
 
