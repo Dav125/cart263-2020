@@ -1,4 +1,4 @@
-class Violence{
+class Violence {
   constructor(x, y, width, height, violentimg) {
     // The x and y Postion
     this.x = x;
@@ -24,39 +24,40 @@ class Violence{
     this.x += this.vx;
     this.y += this.vy;
 
-  // Handle wrapping
-  this.handleWrapping();
-  }
-
-
-  gravity(){
-    this.vy = 2;
-
+    // Handle wrapping
     this.handleWrapping();
   }
 
-  handleCollision(sprite){
+  // gravity
+  gravity() {
+    this.vy = 2;
+    this.handleWrapping();
+  }
+
+  // when it touches the sprite, it reset the position of the objects
+  handleCollision(sprite) {
     let d = dist(this.x, this.y, sprite.x, sprite.y);
 
     if (d < this.width / 2 + sprite.width / 2) {
-      this.x = random(width/3, width/3*2);
+      this.x = random(width / 3, width / 3 * 2);
       this.y = 0;
-      toyScore ++;
+      toyScore++;
 
       responsiveVoice.speak("Oh my god", 'UK English Male');
     }
   }
 
+  // resets the postion of he object when it goes off screen
   handleWrapping() {
-
     // Random positions
     if (this.y > height) {
       this.vy = 0;
-      this.x = random(width/3, width/3*2);
+      this.x = random(width / 3, width / 3 * 2);
       this.y = 0;
     }
   }
 
+  // display the object
   display() {
     push();
     imageMode(CENTER);

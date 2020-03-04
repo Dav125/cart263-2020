@@ -1,4 +1,4 @@
-class Toys{
+class Toys {
   constructor(x, y, width, height, toysImg) {
     // The x and y Postion
     this.x = x;
@@ -24,39 +24,42 @@ class Toys{
     this.x += this.vx;
     this.y += this.vy;
 
-  // Handle wrapping
-  this.handleWrapping();
-  }
-
-  gravity(){
-
-    this.vy = 2;
-
+    // Handle wrapping
     this.handleWrapping();
   }
 
-  handleCollision(sprite){
+  // Gravity pulling the objects
+  gravity() {
+
+    this.vy = 2;
+    this.handleWrapping();
+  }
+
+  //when it touches the sprite
+  handleCollision(sprite) {
     let d = dist(this.x, this.y, sprite.x, sprite.y);
 
     if (d < this.width / 2 + sprite.width / 2) {
-      this.x = random(width/3, width/3*2);
+      this.x = random(width / 3, width / 3 * 2);
       this.y = 0;
-      toyScore ++;
+      toyScore++;
 
       responsiveVoice.speak("Fun", 'UK English Male');
     }
   }
 
+  // the object reappear at the top
   handleWrapping() {
 
     // Random positions
     if (this.y > height) {
       this.vy = 0;
-      this.x = random(width/3, width/3*2);
+      this.x = random(width / 3, width / 3 * 2);
       this.y = 0;
     }
   }
 
+  // to display the object
   display() {
     push();
     imageMode(CENTER);

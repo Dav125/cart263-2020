@@ -24,9 +24,6 @@ class Platform {
   }
 
   // move()
-  //
-  // platform will not move on it own but when the avalanche comes in contact
-  // to platform, it collapes
   move() {
     // To update the position
     this.x += this.vx;
@@ -34,20 +31,22 @@ class Platform {
 
     // Handle wrapping
     this.handleWrapping();
+  }
 
+  // gravity
+  gravity() {
+    this.vy = 1;
+    this.handleWrapping();
   }
 
   // handleWrapping
-  //
-  // Once the platform falls off screen, it will reapear in a
-  // different postion
   handleWrapping() {
 
     // Random positions
     if (this.y > height) {
       this.vy = 0;
       this.x = random(30, width - 30);
-      this.y = random(10, height - 10);
+      this.y = 0;
     }
   }
 
