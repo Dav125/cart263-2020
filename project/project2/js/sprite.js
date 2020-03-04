@@ -57,9 +57,11 @@ class Sprite {
     // if it is, it will be able to jump
     if (keyIsDown(this.upKey) && this.grounded === true) {
       console.log("jumping");
+
       // The jumping power velocity
       this.vy = -17.5;
 
+      responsiveVoice.speak("boing", 'UK English Male');
   }
 }
 // move()

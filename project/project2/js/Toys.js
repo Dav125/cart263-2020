@@ -42,6 +42,8 @@ class Toys{
       this.x = random(width/3, width/3*2);
       this.y = 0;
       toyScore ++;
+
+      responsiveVoice.speak("Fun", 'UK English Male');
     }
   }
 

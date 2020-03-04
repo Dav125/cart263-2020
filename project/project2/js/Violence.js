@@ -9,7 +9,7 @@ class Violence{
     this.vy = 0;
 
     // Scale of the image
-    this.scale = 0.1;
+    this.scale = 0.2;
 
     // The width and height of the object
     this.width = width * this.scale;
@@ -39,8 +39,11 @@ class Violence{
     let d = dist(this.x, this.y, sprite.x, sprite.y);
 
     if (d < this.width / 2 + sprite.width / 2) {
-      this.x = random(30, width - 30);
-      this.y = random(10, height - 10);
+      this.x = random(width/3, width/3*2);
+      this.y = 0;
+      toyScore ++;
+
+      responsiveVoice.speak("Oh my god", 'UK English Male');
     }
   }
 
@@ -49,8 +52,8 @@ class Violence{
     // Random positions
     if (this.y > height) {
       this.vy = 0;
-      this.x = random(30, width - 30);
-      this.y = random(10, height - 10);
+      this.x = random(width/3, width/3*2);
+      this.y = 0;
     }
   }
 
@@ -58,6 +61,7 @@ class Violence{
     push();
     imageMode(CENTER);
     image(this.violentimg, this.x, this.y, this.width, this.height);
+    pop();
   }
 
 }

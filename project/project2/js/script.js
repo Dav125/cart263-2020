@@ -41,11 +41,11 @@ let ponyFplus = [];
 
 let wheelFplus = [];
 
-let gunfightF = [];
+let gunfightFplus = [];
 
-let violenceF = [];
+let violenceFplus = [];
 
-let coolF = [];
+let coolFplus = [];
 
 let startingPlatPlus;
 
@@ -62,6 +62,8 @@ let startingPlat = [];
 let state = "startGame"
 
 let toyScore = 0;
+
+
 
 
 // preload()
@@ -140,6 +142,29 @@ for (let i = 0; i < toyNumb; i++){
   ponyFplus.push(ponyF);
   wheelFplus.push(wheelF);
 }
+
+
+
+for (let s = 0; s < vioNumb; s++){
+  let vvioX = random(0, width);
+  let vvioY = random(0, height);
+
+  let gvioX = random(0, width);
+  let gvioY = random(0, height);
+
+  let cvioX = random(0, width);
+  let cvioY = random(0, height);
+
+
+  let violenceF = new Violence(vvioX, vvioY, 500, 500, violenceImg);
+  let gunfightF = new Violence(gvioX, gvioY, 500, 500, gunfightImg);
+  let coolF = new Violence(cvioX, cvioY, 500, 500, coolImg);
+
+  violenceFplus.push(violenceF);
+  gunfightFplus.push(gunfightF);
+  coolFplus.push(coolF);
+
+}
 }
 
 function startScreen(){
@@ -202,6 +227,10 @@ pop();
     wheelFplus[i].handleCollision(sprite);
   }
 
+  if(toyScore === 10){
+    state = "shadyGame";
+  }
+
   // for loop for starting platform
   //
   // the starting platform will be an array
@@ -217,6 +246,75 @@ if (sprite.y > height) {
   state = "gameOver";
 }
 
+}
+
+function shadyScreen(){
+  image(violentBg, width/2, height/2);
+
+
+  push();
+  textSize(40);
+  textAlign(CENTER, CENTER);
+  stroke(0);
+  fill(255);
+  text(toyScore, width - 20, height/10);
+  pop();
+
+    sprite.handleInput();
+    sprite.gravity();
+    sprite.move();
+    sprite.display();
+
+    sprite.pull = 1;
+
+    sprite.grounded = false;
+
+    // for loop
+    for (let s = 0; s < violenceFplus.length; s++) {
+      violenceFplus[s].gravity();
+      violenceFplus[s].display();
+      violenceFplus[s].move();
+      violenceFplus[s].handleWrapping();
+      violenceFplus[s].handleCollision(sprite);
+    }
+
+    for (let s = 0; s < gunfightFplus.length; s++) {
+      gunfightFplus[s].gravity();
+      gunfightFplus[s].display();
+      gunfightFplus[s].move();
+      gunfightFplus[s].handleWrapping();
+      gunfightFplus[s].handleCollision(sprite);
+    }
+
+    for (let s = 0; s < coolFplus.length; s++) {
+      coolFplus[s].gravity();
+      coolFplus[s].display();
+      coolFplus[s].move();
+      coolFplus[s].handleWrapping();
+      coolFplus[s].handleCollision(sprite);
+    }
+    // for loop for starting platform
+    //
+    // the starting platform will be an array
+    for (let s = 0; s < startingPlat.length; s++) {
+      // startingPlat
+      //
+      // To display the starting platform and the handleStanding
+      startingPlat[s].display();
+      sprite.handleStanding(startingPlat[s]);
+    }
+
+  if (sprite.y > height) {
+    state = "gameOver";
+
+    responsiveVoice.speak("Great now, you ruin the kids mind...", 'UK English Male');
+  }
+
+  if (toyScore === 20){
+    state = "gameOver";
+
+    responsiveVoice.speak("Great now, you ruin the kids mind...", 'UK English Male');
+  }
 }
 
 
@@ -239,6 +337,9 @@ clear();
 
       gameScreen();
       break;
+    case "shadyGame":
+      shadyScreen();
+      break;
     case "gameOver":
 
       overScreen();
@@ -257,6 +358,8 @@ clear();
 
   if (mouseIsPressed) {
     state = "startGame";
+    toyScore = 0;
+    responsiveVoice.speak("You better not ruined the kid's mind again...", 'UK English Male');
 
     sprite = new Sprite(width/2, 500, 600, 600 , 3.5, spriteImg, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW);
   }
